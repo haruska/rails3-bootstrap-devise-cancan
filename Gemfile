@@ -1,25 +1,38 @@
 source 'https://rubygems.org'
-gem 'rails', '3.2.13'
-gem 'sqlite3'
+
+gem 'rails'
+
+gem 'activerecord-jdbcpostgresql-adapter', :platforms => [:jruby]
+gem 'pg', :platforms => [:mri]
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier'
+  gem 'therubyrhino'
 end
+
 gem 'jquery-rails'
-gem "rspec-rails", ">= 2.12.2", :group => [:development, :test]
-gem "database_cleaner", ">= 1.0.0.RC1", :group => :test
-gem "email_spec", ">= 1.4.0", :group => :test
-gem "cucumber-rails", ">= 1.3.1", :group => :test, :require => false
-gem "launchy", ">= 2.2.0", :group => :test
-gem "capybara", ">= 2.0.3", :group => :test
-gem "factory_girl_rails", ">= 4.2.0", :group => [:development, :test]
-gem "bootstrap-sass", ">= 2.3.0.0"
-gem "devise", ">= 2.2.3"
-gem "cancan", ">= 1.6.9"
-gem "rolify", ">= 3.2.0"
-gem "simple_form", ">= 2.1.0"
-gem "quiet_assets", ">= 1.0.2", :group => :development
-gem "figaro", ">= 0.6.3"
-gem "better_errors", ">= 0.7.2", :group => :development
-gem "binding_of_caller", ">= 0.7.1", :group => :development, :platforms => [:mri_19, :rbx]
+gem "bootstrap-sass"
+gem "devise"
+gem "cancan"
+gem "rolify"
+gem "simple_form"
+
+gem "figaro"
+
+group :development do
+  gem "quiet_assets"
+  gem "better_errors"
+  gem "binding_of_caller", :platforms => [:mri_19, :rbx]
+end
+
+group :test do
+  gem "capybara"
+  gem 'minitest-reporters'
+  gem "factory_girl_rails"
+  gem 'webmock', '1.9.3' #vcr 2.4.0 needs webmock < 1.10
+  gem 'vcr'
+  gem 'faker'
+  gem 'shoulda-context'
+end
